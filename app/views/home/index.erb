@@ -1,0 +1,32 @@
+<h2>Images</h2>
+<a href="/home/new" >Ajouter une image</a>
+<br />
+<a href="#" onClick="myPosition()">Afficher ma position</a>
+<div id="myposition"></div>
+
+
+<% @product.each do |p| %>
+email : <%= p.email.to_s %>
+date : <%= p.photo_updated_at.to_s %>
+photo : <%= p.name.to_s %>
+<br/>
+<%= image_tag p.photo.url %>
+<br/>
+<% end %>
+<script type="text/javascript">
+function getPosition(position)
+{
+  var infoposition = "Latitude: "+position.coords.latitude+"<br />";
+  infoposition += "Longitude: "+position.coords.longitude+"<br />";
+  infoposition += "Altitude: "+position.coords.altitude+"<br />";
+ 
+  document.getElementById("myposition").innerHTML = infoposition;
+}
+ 
+function myPosition()
+{
+  navigator.geolocation.getCurrentPosition(getPosition);
+}
+</script>
+
+

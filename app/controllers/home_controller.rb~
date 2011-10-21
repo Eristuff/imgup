@@ -1,0 +1,21 @@
+class HomeController < ApplicationController
+
+  def index
+    @product = Products.find(:all);
+  end
+
+  def new
+    @product = Products.new
+  end 
+
+  def create
+    @product = Products.new(params[:products])
+    if @product.save
+      flash[:notice] = "Successfully created."
+      redirect_to "/"
+    else
+      render :action => 'new'
+    end
+  end
+
+end
